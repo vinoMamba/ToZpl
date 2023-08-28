@@ -1,6 +1,24 @@
 import { describe, expect, it } from 'vitest'
 import { Zpl, formatZpl } from '../src/index'
 
+describe('utils', () => {
+  it('utils.formatZpl: remove spaces', () => {
+    expect(formatZpl('hello    zpl')).toEqual('hellozpl')
+  })
+
+  it('utils.formatZpl: remove newline characters', () => {
+    expect(formatZpl('hello\nzpl')).toEqual('hellozpl')
+  })
+
+  it('utils.formatZpl: remove newline characters and spaces', () => {
+    expect(formatZpl('hello\nz p l')).toEqual('hellozpl')
+  })
+
+  // it('utils.formatZpl: remove newline characters and spaces unless ,except betwwen ^FD and ^FS', () => {
+  //   expect(formatZpl('hello\nz p l,^FDhello\n  zpl^FS')).toEqual('hellozpl,^FDhello\n  zpl^FS')
+  // })
+})
+
 describe('ZPL', () => {
   it('The ZPL Command have a start tag an a end tag', () => {
     const zpl = new Zpl()
