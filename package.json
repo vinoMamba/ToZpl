@@ -5,15 +5,26 @@
   "module": "index.ts",
   "scripts": {
     "build": "tsup",
+    "lint": "eslint .",
     "test": "vitest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@antfu/eslint-config": "^0.41.0",
     "eslint": "^8.48.0",
+    "lint-staged": "^14.0.1",
+    "rimraf": "^5.0.1",
+    "simple-git-hooks": "^2.9.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
