@@ -1,21 +1,40 @@
 import { ZplEnum } from './Command'
-import type { GbOptions } from './type'
+import type { GraphicBoxOptions, TextOptions } from './type'
 import { formatZpl } from './utils'
 
 export class Zpl {
-  private value: string
   private zplList: Array<string>
   constructor() {
-    this.value = ''
     this.zplList = []
   }
 
-  gb(top: number, left: number, opt: GbOptions) {
+  private createPostion(top: number, left: number) {
+    return `${ZplEnum.FIELD_ORIGIN}${top},${left}`
+  }
+
+  private createFont(fontSize: [number, number]) {
+    return `${ZplEnum.FONT},${fontSize[0]},${fontSize[1]}`
+  }
+
+  /* create a graphic box */
+  createGraphicBox(top: number, left: number, opt: GraphicBoxOptions) {
     const { width, height, borderWidth = 1 } = opt
     const gbItem = `
-      ${ZplEnum.FIELD_ORIGIN}${top},${left}
+      ${this.createPostion(top, left)}
       ${ZplEnum.GRAPHIC_BOX}${width},${height},${borderWidth},B,0${ZplEnum.SEPARATOR}`
     this.zplList.push(gbItem)
+  }
+
+  /* create a text */
+  createText(top: number, left: number, opt: TextOptions) {
+    const { fontSize, content } = opt
+    const textItem = `
+      ${this.createPostion(top, left)}
+      ${this.createFont(fontSize)}
+      ${ZplEnum.TEXT}${content}
+      ${ZplEnum.SEPARATOR}
+    `
+    this.zplList.push(textItem)
   }
 
   getZpl() {

@@ -1,12 +1,18 @@
 export enum ZplEnum {
-  /* start flag */
+  /* Start flag */
   START = '^XA',
-  /* end flag */
+  /* End flag */
   END = '^XZ',
-  /* separator */
+  /* Separator */
   SEPARATOR = '^FS',
-  /* field origin */
+  /* Field Origin */
   FIELD_ORIGIN = '^FO',
-  /* graphic box  */
+  /* Graphic Box  */
   GRAPHIC_BOX = '^GB',
+  /*
+   * TODO: Achieve other font types
+   * */
+  FONT = '^A0N',
+  /* Text Content */
+  TEXT = '^FD',
 }

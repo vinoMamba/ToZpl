@@ -6,9 +6,10 @@ describe('ZPL', () => {
     const zpl = new Zpl()
     expect(zpl.getZpl()).toEqual('^XA^XZ')
   })
-  it('Create a graphic box', () => {
+
+  it('create a graphic box', () => {
     const zpl = new Zpl()
-    zpl.gb(
+    zpl.createGraphicBox(
       50,
       50,
       {
@@ -19,6 +20,21 @@ describe('ZPL', () => {
     expect(zpl.getZpl()).toEqual(formatZpl(`
         ^XA
         ^FO50,50^GB100,50,2,B,0^FS
+        ^XZ
+    `))
+  })
+
+  it('create a paragraph', () => {
+    const zpl = new Zpl()
+    zpl.createText(100, 100, {
+      fontSize: [30, 30],
+      content: 'hello zpl',
+    })
+    expect(zpl.getZpl()).toEqual(formatZpl(`
+        ^XA
+        ^FO100,100
+        ^A0N,30,30
+        ^FDhello zpl^FS
         ^XZ
     `))
   })
