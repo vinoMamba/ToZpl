@@ -1,5 +1,5 @@
 import { ZplEnum } from './Command'
-import type { GraphicBoxOptions, QRCodeOptions, TextOptions } from './type'
+import type { GraphicBoxOptions, PicOptions, QRCodeOptions, TextOptions } from './type'
 import { formatZpl } from './utils'
 
 export class Zpl {
@@ -23,6 +23,7 @@ export class Zpl {
       ${this.createPostion(top, left)}
       ${ZplEnum.GRAPHIC_BOX}${width},${height},${borderWidth},B,0${ZplEnum.SEPARATOR}`
     this.zplList.push(gbItem)
+    return this
   }
 
   /* create a text */
@@ -34,6 +35,7 @@ export class Zpl {
       ${ZplEnum.TEXT}${content}${ZplEnum.SEPARATOR}
     `
     this.zplList.push(textItem)
+    return this
   }
 
   /* create a QR Code */
@@ -45,6 +47,17 @@ export class Zpl {
       ${ZplEnum.TEXT}MA,${content}${ZplEnum.SEPARATOR}
     `
     this.zplList.push(qrCodeItem)
+    return this
+  }
+
+  /* create a picture */
+  createPic(top: number, left: number, opt: PicOptions) {
+    const { b, c, d, base64 } = opt
+    const picItem = `
+      ${this.createPostion(top, left)}
+      ${ZplEnum.PICTURE}A,${b ? `${b},` : ''}${c ? `${c},` : ''}${d ? `${d},` : ''}${base64}${ZplEnum.SEPARATOR}`
+    this.zplList.push(picItem)
+    return this
   }
 
   getZpl() {

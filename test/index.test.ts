@@ -71,4 +71,35 @@ describe('ZPL', () => {
         ^XZ
     `))
   })
+
+  it('create a Pic', () => {
+    const zpl = new Zpl()
+    zpl.createPic(50, 50, {
+      b: 8000,
+      c: 8000,
+      d: 80,
+      base64: 'data:image/png;base64',
+    })
+    expect(zpl.getZpl()).toEqual(formatZpl(`
+        ^XA
+        ^FO50,50
+        ^GFA,8000,8000,80,data:image/png;base64^FS
+        ^XZ
+    `))
+  })
+
+  it('create a Pic 2', () => {
+    const zpl = new Zpl()
+    zpl.createPic(50, 50, {
+      c: 8000,
+      d: 80,
+      base64: 'data:image/png;base64',
+    })
+    expect(zpl.getZpl()).toEqual(formatZpl(`
+        ^XA
+        ^FO50,50
+        ^GFA,8000,80,data:image/png;base64^FS
+        ^XZ
+    `))
+  })
 })
