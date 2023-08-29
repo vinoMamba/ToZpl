@@ -14,9 +14,9 @@ describe('utils', () => {
     expect(formatZpl('hello\nz p l')).toEqual('hellozpl')
   })
 
-  // it('utils.formatZpl: remove newline characters and spaces unless ,except betwwen ^FD and ^FS', () => {
-  //   expect(formatZpl('hello\nz p l,^FDhello\n  zpl^FS')).toEqual('hellozpl,^FDhello\n  zpl^FS')
-  // })
+  it('utils.formatZpl: remove newline characters and spaces unless ,except betwwen ^FD and ^FS', () => {
+    expect(formatZpl('^FDhello\n vino^FS')).toEqual('^FDhello vino^FS')
+  })
 })
 
 describe('ZPL', () => {

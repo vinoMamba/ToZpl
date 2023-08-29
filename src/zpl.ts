@@ -31,8 +31,7 @@ export class Zpl {
     const textItem = `
       ${this.createPostion(top, left)}
       ${this.createFont(fontSize)}
-      ${ZplEnum.TEXT}${content}
-      ${ZplEnum.SEPARATOR}
+      ${ZplEnum.TEXT}${content}${ZplEnum.SEPARATOR}
     `
     this.zplList.push(textItem)
   }
