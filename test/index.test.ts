@@ -14,7 +14,7 @@ describe('utils', () => {
     expect(formatZpl('hello\nz p l')).toEqual('hellozpl')
   })
 
-  it('utils.formatZpl: remove newline characters and spaces unless ,except betwwen ^FD and ^FS', () => {
+  it('utils.formatZpl: remove newline characters and spaces,except betwwen ^FD and ^FS', () => {
     expect(formatZpl('^FDhello\n vino^FS')).toEqual('^FDhello vino^FS')
   })
 })
@@ -53,6 +53,21 @@ describe('ZPL', () => {
         ^FO100,100
         ^A0N,30,30
         ^FDhello zpl^FS
+        ^XZ
+    `))
+  })
+
+  it('create a QR Code', () => {
+    const zpl = new Zpl()
+    zpl.createQRCode(50, 50, {
+      scale: 10,
+      content: 'http://test.com',
+    })
+    expect(zpl.getZpl()).toEqual(formatZpl(`
+        ^XA
+        ^FO50,50
+        ^BQ,2,10
+        ^FDMA,http://test.com^FS
         ^XZ
     `))
   })
