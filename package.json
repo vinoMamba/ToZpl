@@ -1,7 +1,7 @@
 {
   "name": "to-zpl",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A ZPL Command Tool",
   "author": "VinoMamba <vino0908@outlook.com>",
   "license": "MIT",
