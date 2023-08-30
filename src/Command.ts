@@ -15,4 +15,8 @@ export enum ZplEnum {
   FONT = '^A0N',
   /* Text Content */
   TEXT = '^FD',
+  /* QR Code */
+  QR_CODE = '^BQ',
+  /* picture */
+  PICTURE = '^GF',
 }
