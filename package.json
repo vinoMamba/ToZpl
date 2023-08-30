@@ -1,7 +1,7 @@
 {
   "name": "to-zpl",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A ZPL Command Tool",
   "author": "VinoMamba <vino0908@outlook.com>",
   "license": "MIT",
@@ -9,17 +9,17 @@
   "keywords": [],
   "exports": {
     ".": {
-      "default": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
-    "./dist/index.js": "./dist/index.js",
-    "./dist/index.d.ts": "./dist/index.d.ts"
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "./dist/*",
-    "./README.md",
-    "./package.json"
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
@@ -30,7 +30,6 @@
     "@antfu/eslint-config": "^0.41.0",
     "eslint": "^8.48.0",
     "lint-staged": "^14.0.1",
-    "rimraf": "^5.0.1",
     "simple-git-hooks": "^2.9.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
